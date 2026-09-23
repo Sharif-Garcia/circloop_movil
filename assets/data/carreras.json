@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "nombre": "Administración de Empresas",
+    "facultadId": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Administración de Empresas Turísticas y Hoteleras",
+    "facultadId": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Comercio Internacional",
+    "facultadId": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Contaduría Pública",
+    "facultadId": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Economía",
+    "facultadId": 1
+  },
+  {
+    "id": 6,
+    "nombre": "Ingeniería Agroindustrial",
+    "facultadId": 2
+  },
+  {
+    "id": 7,
+    "nombre": "Ingeniería Ambiental y Sanitaria",
+    "facultadId": 2
+  },
+  {
+    "id": 8,
+    "nombre": "Ingeniería de Sistemas",
+    "facultadId": 2
+  },
+  {
+    "id": 9,
+    "nombre": "Ingeniería Electrónica",
+    "facultadId": 2
+  },
+  {
+    "id": 10,
+    "nombre": "Derecho",
+    "facultadId": 3
+  },
+  {
+    "id": 11,
+    "nombre": "Psicología",
+    "facultadId": 3
+  },
+  {
+    "id": 12,
+    "nombre": "Sociología",
+    "facultadId": 3
+  },
+  {
+    "id": 13,
+    "nombre": "Enfermería",
+    "facultadId": 4
+  },
+  {
+    "id": 14,
+    "nombre": "Instrumentación Quirúrgica",
+    "facultadId": 4
+  },
+  {
+    "id": 15,
+    "nombre": "Fisioterapia",
+    "facultadId": 4
+  },
+  {
+    "id": 16,
+    "nombre": "Licenciatura en Artes",
+    "facultadId": 5
+  },
+  {
+    "id": 17,
+    "nombre": "Música",
+    "facultadId": 5
+  },
+  {
+    "id": 18,
+    "nombre": "Microbiología",
+    "facultadId": 6
+  },
+  {
+    "id": 19,
+    "nombre": "Licenciatura en Matemáticas",
+    "facultadId": 7
+  },
+  {
+    "id": 20,
+    "nombre": "Licenciatura en Español e Inglés",
+    "facultadId": 7
+  },
+  {
+    "id": 21,
+    "nombre": "Licenciatura en Literatura y Lengua Castellana",
+    "facultadId": 7
+  },
+  {
+    "id": 22,
+    "nombre": "Licenciatura en Educación Física, Recreación y Deportes",
+    "facultadId": 7
+  },
+  {
+    "id": 23,
+    "nombre": "Licenciatura en Ciencias Naturales y Educación Ambiental",
+    "facultadId": 7
+  }
+]

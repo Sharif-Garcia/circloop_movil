@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "nombres": "Ana",
+    "apellidos": "Torres Martínez",
+    "correoInstitucional": "anatorres@unicesar.edu.co",
+    "carreraId": 7,
+    "rolId": 1,
+    "activo": true,
+    "puntosTotales": 0,
+    "puntosCanjeados": 0,
+    "puntosHistoricos": 0,
+    "fotoUrl": null
+  },
+  {
+    "id": 2,
+    "nombres": "Carlos",
+    "apellidos": "Pérez Gómez",
+    "correoInstitucional": "carlosperez@unicesar.edu.co",
+    "carreraId": 1,
+    "rolId": 2,
+    "activo": true,
+    "puntosTotales": 0,
+    "puntosCanjeados": 0,
+    "puntosHistoricos": 0,
+    "fotoUrl": null
+  },
+  {
+    "id": 3,
+    "nombres": "Laura",
+    "apellidos": "Gómez Rodríguez",
+    "correoInstitucional": "lauragomez@unicesar.edu.co",
+    "carreraId": 3,
+    "rolId": 3,
+    "activo": true,
+    "puntosTotales": 0,
+    "puntosCanjeados": 0,
+    "puntosHistoricos": 0,
+    "fotoUrl": null
+  },
+  {
+    "id": 4,
+    "nombres": "Administrador",
+    "apellidos": "CIRCLOOP",
+    "correoInstitucional": "admin@unicesar.edu.co",
+    "carreraId": null,
+    "rolId": 4,
+    "activo": true,
+    "puntosTotales": 0,
+    "puntosCanjeados": 0,
+    "puntosHistoricos": 0,
+    "fotoUrl": null
+  }
+]

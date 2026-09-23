@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "Facultad de Ciencias Administrativas, Contables y Económicas"
+  },
+  {
+    "id": 2,
+    "nombre": "Facultad de Ingenierías y Tecnologías"
+  },
+  {
+    "id": 3,
+    "nombre": "Facultad de Derecho, Ciencias Políticas y Sociales"
+  },
+  {
+    "id": 4,
+    "nombre": "Facultad de Ciencias de la Salud"
+  },
+  {
+    "id": 5,
+    "nombre": "Facultad de Bellas Artes"
+  },
+  {
+    "id": 6,
+    "nombre": "Facultad de Ciencias Básicas"
+  },
+  {
+    "id": 7,
+    "nombre": "Facultad de Educación"
+  }
+]

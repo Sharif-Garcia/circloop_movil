@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "comunidad"
+  },
+  {
+    "id": 2,
+    "nombre": "operador"
+  },
+  {
+    "id": 3,
+    "nombre": "punto_canje"
+  },
+  {
+    "id": 4,
+    "nombre": "administrador"
+  }
+]

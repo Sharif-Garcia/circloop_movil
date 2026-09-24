@@ -1,3 +1,4 @@
+import 'package:circloop_movil/utils/role_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,6 +40,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           _correoController.text.trim(),
           _contrasenaController.text,
         );
+
+    if (!mounted) return;
+
+    final authState = ref.read(authProvider);
+
+    if (authState.hasValue && authState.value != null) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => RoleRouter.obtenerPantalla(authState.value!),
+        ),
+      );
+    }
   }
 
   @override

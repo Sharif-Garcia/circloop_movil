@@ -13,4 +13,21 @@ class UsuarioService {
 
     return datos.map((dato) => Usuario.fromJson(dato)).toList();
   }
+
+  Future<Usuario?> iniciarSesion(String correo, String contrasena) async {
+    final usuarios = await obtenerUsuarios();
+
+    for (final usuario in usuarios) {
+      if (usuario.correoInstitucional == correo &&
+          usuario.contrasena == contrasena) {
+        if (!usuario.activo) {
+          return null;
+        }
+
+        return usuario;
+      }
+    }
+
+    return null;
+  }
 }

@@ -3,6 +3,7 @@ class Usuario {
   final String nombres;
   final String apellidos;
   final String correoInstitucional;
+  final String contrasena;
   final int? carreraId;
   final int rolId;
   final bool activo;
@@ -16,6 +17,7 @@ class Usuario {
     required this.nombres,
     required this.apellidos,
     required this.correoInstitucional,
+    required this.contrasena,
     this.carreraId,
     required this.rolId,
     required this.activo,
@@ -31,6 +33,7 @@ class Usuario {
       nombres: json['nombres'],
       apellidos: json['apellidos'],
       correoInstitucional: json['correoInstitucional'],
+      contrasena: json['contrasena'],
       carreraId: json['carreraId'],
       rolId: json['rolId'],
       activo: json['activo'],

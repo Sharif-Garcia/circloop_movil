@@ -1,0 +1,24 @@
+# Íconos de la app (el que se ve en el celular, en la pestaña del navegador, etc.)
+# Para regenerarlos después de cambiar las imágenes de assets/launcher/:
+#   dart run flutter_launcher_icons
+
+flutter_launcher_icons:
+  # Android
+  android: true
+  image_path_android: "assets/launcher/icono.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/launcher/icono_adaptativo.png"
+  min_sdk_android: 21
+
+  # iOS (no admite transparencia, por eso usa la versión con fondo blanco)
+  ios: true
+  image_path_ios: "assets/launcher/icono_ios.png"
+  remove_alpha_ios: true
+  background_color_ios: "#FFFFFF"
+
+  # Web (favicon e íconos del manifest)
+  web:
+    generate: true
+    image_path: "assets/launcher/icono.png"
+    background_color: "#FAF8FF"
+    theme_color: "#006948"

@@ -1,11 +1,11 @@
 {
-    "name": "circloop_movil",
-    "short_name": "circloop_movil",
+    "name": "CIRCLOOP",
+    "short_name": "CIRCLOOP",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FAF8FF",
+    "theme_color": "#006948",
+    "description": "CIRCLOOP - Sistema de Devolución y Recompensa",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,0 +1,18 @@
+# Pantalla nativa que se muestra mientras Flutter carga (antes de SplashScreen).
+# Para regenerarla después de cambiar las imágenes de assets/launcher/:
+#   dart run flutter_native_splash:create
+
+flutter_native_splash:
+  # Mismo color que AppColors.background para que no se note el cambio
+  color: "#FAF8FF"
+  image: "assets/launcher/splash.png"
+
+  # Android 12+ muestra el ícono dentro de un círculo
+  android_12:
+    image: "assets/launcher/icono_adaptativo.png"
+    color: "#FAF8FF"
+
+  android: true
+  ios: true
+  web: true
+  fullscreen: false

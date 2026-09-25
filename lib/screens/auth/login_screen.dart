@@ -2,10 +2,22 @@ import 'package:circloop_movil/utils/role_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/usuario.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_sizes.dart';
+import '../../utils/app_strings.dart';
 import '../../utils/validators.dart';
+import '../../widgets/comunes/app_mensaje.dart';
+import '../../widgets/comunes/app_tarjeta.dart';
+import '../../widgets/botones/boton_primario.dart';
+import '../../widgets/formularios/campo_contrasena.dart';
+import '../../widgets/formularios/campo_texto.dart';
+import '../../widgets/auth/encabezado_auth.dart';
+import '../../widgets/botones/enlace_texto.dart';
+import 'recuperar_contrasena_screen.dart';
+import 'registro_screen.dart';
+import 'sesion.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -19,8 +31,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   final _correoController = TextEditingController();
   final _contrasenaController = TextEditingController();
-
-  bool _mostrarContrasena = false;
 
   @override
   void dispose() {
@@ -54,108 +64,103 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
   }
 
+  void _irAInicio(Usuario usuario) {
+    AppMensaje.exito(context, AppStrings.bienvenida(usuario.nombres));
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => pantallaInicioPorRol(usuario)),
+    );
+  }
+
+  void _abrir(Widget pantalla) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => pantalla));
+  }
+
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
 
-    ref.listen<AsyncValue>(authProvider, (previous, next) {
+    ref.listen<AsyncValue<Usuario?>>(authProvider, (previous, next) {
       next.whenOrNull(
-        error: (error, _) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(error.toString()),
-              backgroundColor: AppColors.error,
-            ),
-          );
+        data: (usuario) {
+          if (usuario != null) _irAInicio(usuario);
         },
+        error: (error, _) => AppMensaje.error(context, error.toString()),
       );
     });
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(AppSizes.md),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.recycling,
-                    size: AppSizes.iconXl,
-                    color: AppColors.primary,
-                  ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSizes.lg),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: AppSizes.xl),
 
-                  const SizedBox(height: AppSizes.lg),
+                const EncabezadoAuth(
+                  titulo: AppStrings.tituloLogin,
+                  subtitulo: AppStrings.subtituloLogin,
+                ),
 
-                  Text(
-                    'CIRCLOOP',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+                const SizedBox(height: AppSizes.xl),
 
-                  const SizedBox(height: AppSizes.sm),
+                AppTarjeta(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CampoTexto(
+                        etiqueta: AppStrings.correoInstitucional,
+                        ejemplo: AppStrings.ejemploCorreo,
+                        icono: Icons.email_outlined,
+                        controller: _correoController,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: Validators.correo,
+                      ),
 
-                  Text(
-                    'Sistema de Devolución y Recompensa',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                      const SizedBox(height: AppSizes.md),
 
-                  const SizedBox(height: AppSizes.xl),
+                      CampoContrasena(
+                        controller: _contrasenaController,
+                        validator: Validators.contrasena,
+                      ),
 
-                  TextFormField(
-                    controller: _correoController,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: Validators.correo,
-                    decoration: const InputDecoration(
-                      labelText: 'Correo institucional',
-                      prefixIcon: Icon(Icons.email_outlined),
-                    ),
-                  ),
+                      const SizedBox(height: AppSizes.sm),
 
-                  const SizedBox(height: AppSizes.md),
-
-                  TextFormField(
-                    controller: _contrasenaController,
-                    obscureText: !_mostrarContrasena,
-                    validator: Validators.contrasena,
-                    decoration: InputDecoration(
-                      labelText: 'Contraseña',
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _mostrarContrasena = !_mostrarContrasena;
-                          });
-                        },
-                        icon: Icon(
-                          _mostrarContrasena
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () =>
+                              _abrir(const RecuperarContrasenaScreen()),
+                          style: TextButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                          ),
+                          child: const Text(AppStrings.olvidasteContrasena),
                         ),
                       ),
-                    ),
-                  ),
 
-                  const SizedBox(height: AppSizes.lg),
+                      const SizedBox(height: AppSizes.md),
 
-                  SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: FilledButton(
-                      onPressed: authState.isLoading ? null : _iniciarSesion,
-                      child: authState.isLoading
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Text('Iniciar sesión'),
-                    ),
+                      BotonPrimario(
+                        texto: AppStrings.iniciarSesion,
+                        onPressed: _iniciarSesion,
+                        cargando: authState.isLoading,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+
+                const SizedBox(height: AppSizes.lg),
+
+                EnlaceTexto(
+                  texto: AppStrings.noTienesCuenta,
+                  accion: AppStrings.registrate,
+                  onPressed: () => _abrir(const RegistroScreen()),
+                ),
+              ],
             ),
           ),
         ),

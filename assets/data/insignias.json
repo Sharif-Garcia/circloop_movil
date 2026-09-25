@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "nombre": "Eco Iniciado",
+    "descripcion": "Haz tu primera entrega de material reciclable.",
+    "icono": "verified",
+    "criterio": "entregas",
+    "meta": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Reciclador Pro",
+    "descripcion": "Recicla 10 kg de material.",
+    "icono": "bolt",
+    "criterio": "kg",
+    "meta": 10
+  },
+  {
+    "id": 3,
+    "nombre": "Defensor CO₂",
+    "descripcion": "Evita 15 kg de emisiones de CO₂.",
+    "icono": "eco",
+    "criterio": "co2",
+    "meta": 15
+  },
+  {
+    "id": 4,
+    "nombre": "Vidrio Hero",
+    "descripcion": "Entrega vidrio al menos una vez.",
+    "icono": "wine_bar",
+    "criterio": "material",
+    "material": "vidrio",
+    "meta": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Súper Campus",
+    "descripcion": "Llega al nivel 4 (Eco Guardián).",
+    "icono": "school",
+    "criterio": "nivel",
+    "meta": 4
+  },
+  {
+    "id": 6,
+    "nombre": "Zero Waste",
+    "descripcion": "Recicla 50 kg de material.",
+    "icono": "recycling",
+    "criterio": "kg",
+    "meta": 50
+  }
+]

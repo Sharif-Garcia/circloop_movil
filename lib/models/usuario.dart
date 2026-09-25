@@ -43,4 +43,28 @@ class Usuario {
       fotoUrl: json['fotoUrl'],
     );
   }
+
+  /// Copia con los datos del perfil o los puntos cambiados.
+  Usuario copyWith({
+    String? nombres,
+    String? apellidos,
+    int? carreraId,
+    int? puntosTotales,
+    int? puntosCanjeados,
+  }) {
+    return Usuario(
+      id: id,
+      nombres: nombres ?? this.nombres,
+      apellidos: apellidos ?? this.apellidos,
+      correoInstitucional: correoInstitucional,
+      contrasena: contrasena,
+      carreraId: carreraId ?? this.carreraId,
+      rolId: rolId,
+      activo: activo,
+      puntosTotales: puntosTotales ?? this.puntosTotales,
+      puntosCanjeados: puntosCanjeados ?? this.puntosCanjeados,
+      puntosHistoricos: puntosHistoricos,
+      fotoUrl: fotoUrl,
+    );
+  }
 }

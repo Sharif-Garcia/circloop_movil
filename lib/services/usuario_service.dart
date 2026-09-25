@@ -10,14 +10,16 @@ import 'package:flutter/services.dart';
 
 class UsuarioService {
   // El JSON de assets es de solo lectura: mientras no exista un backend,
-  // los usuarios nuevos y las contraseñas cambiadas se guardan en memoria
-  // (se pierden al cerrar la app).
+  // los usuarios nuevos, los perfiles editados y las contraseñas cambiadas
+  // se guardan en memoria (se pierden al cerrar la app).
   static final List<Usuario> _usuariosRegistrados = [];
+  static final Map<int, Usuario> _perfilesActualizados = {};
   static final Map<String, String> _contrasenasActualizadas = {};
 
   @visibleForTesting
   static void reiniciarDatosEnMemoria() {
     _usuariosRegistrados.clear();
+    _perfilesActualizados.clear();
     _contrasenasActualizadas.clear();
   }
 
@@ -31,7 +33,15 @@ class UsuarioService {
     return [
       ...datos.map((dato) => Usuario.fromJson(dato)),
       ..._usuariosRegistrados,
-    ];
+    ].map((usuario) => _perfilesActualizados[usuario.id] ?? usuario).toList();
+  }
+
+  /// Guarda los cambios del usuario (perfil o puntos) y lo devuelve.
+  Future<Usuario> actualizarUsuario(Usuario actualizado) async {
+    // TODO: cuando exista el backend, enviar los cambios y devolver el
+    // usuario que responda.
+    _perfilesActualizados[actualizado.id] = actualizado;
+    return actualizado;
   }
 
   Future<Usuario?> buscarPorCorreo(String correo) async {
@@ -76,7 +86,8 @@ class UsuarioService {
     }
 
     final usuarios = await obtenerUsuarios();
-    final siguienteId = usuarios.fold<int>(0, (max, u) => u.id > max ? u.id : max) + 1;
+    final siguienteId =
+        usuarios.fold<int>(0, (max, u) => u.id > max ? u.id : max) + 1;
 
     final usuario = Usuario(
       id: siguienteId,
@@ -96,7 +107,10 @@ class UsuarioService {
     return usuario;
   }
 
-  Future<void> actualizarContrasena(String correo, String nuevaContrasena) async {
+  Future<void> actualizarContrasena(
+    String correo,
+    String nuevaContrasena,
+  ) async {
     // TODO: enviar al backend cuando exista.
     _contrasenasActualizadas[_normalizar(correo)] = nuevaContrasena;
   }

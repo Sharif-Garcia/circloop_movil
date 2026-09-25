@@ -8,9 +8,9 @@
     "carreraId": 7,
     "rolId": 1,
     "activo": true,
-    "puntosTotales": 0,
-    "puntosCanjeados": 0,
-    "puntosHistoricos": 0,
+    "puntosTotales": 1100,
+    "puntosCanjeados": 150,
+    "puntosHistoricos": 1250,
     "fotoUrl": null
   },
   {
@@ -53,6 +53,20 @@
     "puntosTotales": 0,
     "puntosCanjeados": 0,
     "puntosHistoricos": 0,
+    "fotoUrl": null
+  },
+  {
+    "id": 5,
+    "nombres": "Julián",
+    "apellidos": "Ríos Mendoza",
+    "correoInstitucional": "julianrios@unicesar.edu.co",
+    "contrasena": "123456",
+    "carreraId": 1,
+    "rolId": 1,
+    "activo": true,
+    "puntosTotales": 480,
+    "puntosCanjeados": 0,
+    "puntosHistoricos": 480,
     "fotoUrl": null
   }
 ]

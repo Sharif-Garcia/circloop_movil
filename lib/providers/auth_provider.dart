@@ -43,6 +43,12 @@ class AuthNotifier extends Notifier<AsyncValue<Usuario?>> {
     }
   }
 
+  /// Reemplaza el usuario en sesión (por ejemplo, después de editar el
+  /// perfil) para que todas las pantallas muestren los datos nuevos.
+  void actualizarUsuario(Usuario usuario) {
+    state = AsyncValue.data(usuario);
+  }
+
   void cerrarSesion() {
     state = const AsyncValue.data(null);
   }

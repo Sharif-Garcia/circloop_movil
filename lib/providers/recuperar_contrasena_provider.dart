@@ -112,7 +112,10 @@ class RecuperarContrasenaNotifier extends Notifier<EstadoRecuperacion> {
 
       if (!ref.mounted) return;
 
-      state = state.copyWith(paso: PasoRecuperacion.completado, cargando: false);
+      state = state.copyWith(
+        paso: PasoRecuperacion.completado,
+        cargando: false,
+      );
     } catch (e) {
       if (!ref.mounted) return;
       state = state.copyWith(cargando: false, error: AppStrings.errorGeneral);

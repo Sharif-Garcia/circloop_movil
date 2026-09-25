@@ -1,3 +1,8 @@
+import 'package:circloop_movil/screens/auth/login_screen.dart';
+import 'package:circloop_movil/services/canje_service.dart';
+import 'package:circloop_movil/services/notificacion_service.dart';
+import 'package:circloop_movil/services/premio_service.dart';
+import 'package:circloop_movil/services/transferencia_service.dart';
 import 'package:circloop_movil/services/usuario_service.dart';
 import 'package:circloop_movil/utils/app_strings.dart';
 import 'package:circloop_movil/utils/app_theme.dart';
@@ -13,6 +18,10 @@ void configurarPruebas() {
     // test que la creó y colgaría la carga en el siguiente test.
     rootBundle.clear();
     UsuarioService.reiniciarDatosEnMemoria();
+    CanjeService.reiniciarDatosEnMemoria();
+    PremioService.reiniciarDatosEnMemoria();
+    TransferenciaService.reiniciarDatosEnMemoria();
+    NotificacionService.reiniciarDatosEnMemoria();
   });
 }
 
@@ -33,7 +42,10 @@ Future<void> abrirPantalla(WidgetTester tester, Widget pantalla) async {
 /// Alterna tiempo real (`runAsync`) y frames hasta que se cumpla [condicion].
 /// La carga del JSON es asíncrona real, fuera del reloj falso del test, por
 /// eso `pumpAndSettle` solo no basta.
-Future<void> esperarHasta(WidgetTester tester, bool Function() condicion) async {
+Future<void> esperarHasta(
+  WidgetTester tester,
+  bool Function() condicion,
+) async {
   for (var i = 0; i < 100 && !condicion(); i++) {
     await tester.runAsync(
       () => Future.delayed(const Duration(milliseconds: 20)),
@@ -61,4 +73,27 @@ Future<void> iniciarSesion(
   await tester.tap(find.text(AppStrings.iniciarSesion));
 
   await esperarA(tester, esperado);
+}
+
+/// Datos de la usuaria de prueba del rol comunidad (usuarios.json).
+const correoAna = 'anatorres@unicesar.edu.co';
+const carreraAna = 'Ingeniería Ambiental y Sanitaria';
+
+/// Abre el login, entra como Ana (rol comunidad) y espera a que su inicio
+/// termine de cargar (entregas y carrera).
+Future<void> entrarComoAna(WidgetTester tester) async {
+  await abrirPantalla(tester, const LoginScreen());
+  await iniciarSesion(
+    tester,
+    correo: correoAna,
+    contrasena: '123456',
+    esperado: find.text(AppStrings.actividadReciente),
+  );
+  await esperarA(tester, find.text(carreraAna));
+}
+
+/// Toca una pestaña de la navegación inferior por su etiqueta.
+Future<void> irAPestana(WidgetTester tester, String etiqueta) async {
+  await tester.tap(find.text(etiqueta).last);
+  await tester.pumpAndSettle();
 }

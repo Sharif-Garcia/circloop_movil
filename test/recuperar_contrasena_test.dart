@@ -139,13 +139,13 @@ void main() {
     expect(error, findsOneWidget);
 
     // La nueva sí
-    final panel = find.text('Panel de Comunidad');
+    final saludo = find.text(AppStrings.saludo('Ana'));
     await iniciarSesion(
       tester,
       correo: _correoAna,
       contrasena: 'nueva123',
-      esperado: panel,
+      esperado: saludo,
     );
-    expect(panel, findsOneWidget);
+    expect(saludo, findsOneWidget);
   });
 }

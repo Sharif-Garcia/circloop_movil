@@ -1,6 +1,7 @@
 import 'package:circloop_movil/models/carrera.dart';
 import 'package:circloop_movil/screens/auth/login_screen.dart';
 import 'package:circloop_movil/screens/auth/registro_screen.dart';
+import 'package:circloop_movil/screens/comunidad/panel_comunidad_screen.dart';
 import 'package:circloop_movil/utils/app_strings.dart';
 import 'package:circloop_movil/utils/validators.dart';
 import 'package:flutter/material.dart';
@@ -135,14 +136,16 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(LoginScreen), findsOneWidget);
 
-    final panel = find.text('Panel de Comunidad');
+    // Cuenta nueva: rol comunidad y sin entregas todavía
+    final vacio = find.text(AppStrings.sinEntregas);
     await iniciarSesion(
       tester,
       correo: 'nuevo@unicesar.edu.co',
       contrasena: 'reciclo2024',
-      esperado: panel,
+      esperado: vacio,
     );
-    expect(panel, findsOneWidget);
+    expect(find.byType(PanelComunidadScreen), findsOneWidget);
     expect(find.text(AppStrings.saludo('María José')), findsOneWidget);
+    expect(vacio, findsOneWidget);
   });
 }

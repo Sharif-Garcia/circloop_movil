@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "categoria": "comida",
+    "establecimiento": "Café Campus",
+    "titulo": "Café Americano Gratis",
+    "costoPuntos": 150,
+    "imagenUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400",
+    "etiqueta": "popular",
+    "stock": 25,
+    "activo": true
+  },
+  {
+    "id": 2,
+    "categoria": "merchandise",
+    "establecimiento": "Librería Central",
+    "titulo": "Libreta Ecológica CircLoop",
+    "costoPuntos": 400,
+    "imagenUrl": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400",
+    "etiqueta": "nuevo",
+    "stock": 0,
+    "activo": true
+  },
+  {
+    "id": 3,
+    "categoria": "merchandise",
+    "establecimiento": "Deportes UNI",
+    "titulo": "Eco Botella de Aluminio",
+    "costoPuntos": 850,
+    "imagenUrl": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400",
+    "etiqueta": "nuevo",
+    "stock": 3,
+    "activo": true
+  },
+  {
+    "id": 4,
+    "categoria": "comida",
+    "establecimiento": "Comedor Central",
+    "titulo": "Descuento 15% Almuerzos",
+    "costoPuntos": 300,
+    "imagenUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400",
+    "etiqueta": "popular",
+    "stock": null,
+    "activo": true
+  },
+  {
+    "id": 5,
+    "categoria": "experiencias",
+    "establecimiento": "Bienestar Universitario",
+    "titulo": "Taller de Huerta Urbana",
+    "costoPuntos": 1500,
+    "imagenUrl": null,
+    "etiqueta": null,
+    "stock": 8,
+    "activo": true
+  },
+  {
+    "id": 6,
+    "categoria": "merchandise",
+    "establecimiento": "Librería Central",
+    "titulo": "Termo Edición 2025",
+    "costoPuntos": 700,
+    "imagenUrl": null,
+    "etiqueta": null,
+    "stock": 10,
+    "activo": false
+  }
+]

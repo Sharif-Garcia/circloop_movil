@@ -66,7 +66,10 @@ class _RecuperarContrasenaScreenState
         .restablecerContrasena(_codigo, _contrasenaController.text);
   }
 
-  void _escucharCambios(EstadoRecuperacion? anterior, EstadoRecuperacion actual) {
+  void _escucharCambios(
+    EstadoRecuperacion? anterior,
+    EstadoRecuperacion actual,
+  ) {
     if (actual.error != null && actual.error != anterior?.error) {
       AppMensaje.error(context, actual.error!);
     }

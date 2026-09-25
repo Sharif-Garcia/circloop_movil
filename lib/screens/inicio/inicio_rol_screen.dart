@@ -7,21 +7,12 @@ import '../../utils/app_roles.dart';
 import '../../utils/app_sizes.dart';
 import '../../utils/app_strings.dart';
 import '../../widgets/comunes/app_tarjeta.dart';
-import '../auth/login_screen.dart';
+import '../auth/sesion.dart';
 
-/// Pantalla TEMPORAL de inicio según el rol del usuario autenticado.
-/// Se reemplazará por el panel real de cada rol.
+/// Pantalla TEMPORAL de inicio para los roles que aún no tienen panel
+/// (operador, punto de canje, administrador).
 class InicioRolScreen extends ConsumerWidget {
   const InicioRolScreen({super.key});
-
-  void _cerrarSesion(BuildContext context, WidgetRef ref) {
-    ref.read(authProvider.notifier).cerrarSesion();
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,7 +33,7 @@ class InicioRolScreen extends ConsumerWidget {
           IconButton(
             tooltip: AppStrings.cerrarSesion,
             icon: const Icon(Icons.logout),
-            onPressed: () => _cerrarSesion(context, ref),
+            onPressed: () => cerrarSesion(context, ref),
           ),
         ],
       ),

@@ -13,10 +13,10 @@ import '../../widgets/botones/boton_primario.dart';
 import '../../widgets/formularios/campo_contrasena.dart';
 import '../../widgets/formularios/campo_texto.dart';
 import '../../widgets/auth/encabezado_auth.dart';
-import '../inicio/inicio_rol_screen.dart';
 import '../../widgets/botones/enlace_texto.dart';
 import 'recuperar_contrasena_screen.dart';
 import 'registro_screen.dart';
+import 'sesion.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -56,7 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const InicioRolScreen()),
+      MaterialPageRoute(builder: (context) => pantallaInicioPorRol(usuario)),
     );
   }
 

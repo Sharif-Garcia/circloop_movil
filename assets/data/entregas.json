@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "usuarioId": 1,
+    "material": "plastico",
+    "pesoKg": 1.2,
+    "co2EvitadoKg": 1.8,
+    "puntos": 50,
+    "fecha": "2026-09-24T10:45:00"
+  },
+  {
+    "id": 2,
+    "usuarioId": 1,
+    "material": "papel",
+    "pesoKg": 3.5,
+    "co2EvitadoKg": 3.2,
+    "puntos": 70,
+    "fecha": "2026-09-23T16:20:00"
+  },
+  {
+    "id": 3,
+    "usuarioId": 1,
+    "material": "aluminio",
+    "pesoKg": 0.8,
+    "co2EvitadoKg": 7.4,
+    "puntos": 40,
+    "fecha": "2026-09-18T11:15:00"
+  },
+  {
+    "id": 4,
+    "usuarioId": 1,
+    "material": "vidrio",
+    "pesoKg": 4.0,
+    "co2EvitadoKg": 1.2,
+    "puntos": 60,
+    "fecha": "2026-09-10T09:30:00"
+  },
+  {
+    "id": 5,
+    "usuarioId": 1,
+    "material": "plastico",
+    "pesoKg": 2.5,
+    "co2EvitadoKg": 3.8,
+    "puntos": 100,
+    "fecha": "2026-08-29T14:05:00"
+  },
+  {
+    "id": 6,
+    "usuarioId": 1,
+    "material": "papel",
+    "pesoKg": 2.5,
+    "co2EvitadoKg": 2.3,
+    "puntos": 50,
+    "fecha": "2026-08-20T08:50:00"
+  }
+]

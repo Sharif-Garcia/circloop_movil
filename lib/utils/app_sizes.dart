@@ -20,17 +20,30 @@ class AppSizes {
   static const double iconXl = 40.0;
   static const double iconXxl = 100.0;
 
+  // Avatares
+  static const double avatarSm = 36.0;
+  static const double avatarLg = 88.0;
+
   // Imágenes
+  static const double mascotaSm = 96.0;
   static const double logoSm = 32.0;
   static const double logoMd = 64.0;
   static const double logoLg = 140.0;
   static const double ilustracion = 220.0;
+  static const double codigoQr = 200.0;
+  static const double imagenPremio = 96.0;
+
+  // Tarjetas
+  static const double tarjetaPremioAlto = 290.0;
 
   // Botones
   static const double buttonHeight = 50.0;
 
   // Campos
   static const double casillaCodigo = 56.0;
+
+  // Separadores
+  static const double separadorAlto = 32.0;
 
   // Indicador de páginas
   static const double indicadorAlto = 8.0;

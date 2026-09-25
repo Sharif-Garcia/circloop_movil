@@ -48,13 +48,84 @@ class AppTheme {
 
     scaffoldBackgroundColor: AppColors.background,
 
+    // Barras de navegación
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.surface,
+      foregroundColor: AppColors.primary,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: false,
+    ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: AppColors.surface,
+      indicatorColor: AppColors.primary.withValues(alpha: 0.12),
+      iconTheme: WidgetStateProperty.resolveWith(
+        (estados) => IconThemeData(
+          color: estados.contains(WidgetState.selected)
+              ? AppColors.primary
+              : AppColors.grey,
+        ),
+      ),
+      labelTextStyle: WidgetStateProperty.resolveWith(
+        (estados) => TextStyle(
+          fontSize: AppSizes.textXs,
+          fontWeight: estados.contains(WidgetState.selected)
+              ? FontWeight.bold
+              : FontWeight.normal,
+          color: estados.contains(WidgetState.selected)
+              ? AppColors.primary
+              : AppColors.grey,
+        ),
+      ),
+    ),
+
     // Botones: las pantallas heredan estos estilos, no los repiten
     elevatedButtonTheme: ElevatedButtonThemeData(style: _botonPrincipal),
     filledButtonTheme: FilledButtonThemeData(style: _botonPrincipal),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primary),
+        minimumSize: const Size(double.infinity, AppSizes.buttonHeight),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.radiusMd),
+        ),
+        textStyle: const TextStyle(
+          fontSize: AppSizes.textMd,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.grey,
         textStyle: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+    ),
+
+    // Globo de notificaciones sin leer
+    badgeTheme: const BadgeThemeData(
+      backgroundColor: AppColors.error,
+      textColor: AppColors.white,
+    ),
+
+    // Chips (filtros)
+    chipTheme: ChipThemeData(
+      color: WidgetStateProperty.resolveWith(
+        (estados) => estados.contains(WidgetState.selected)
+            ? AppColors.primary
+            : AppColors.surface,
+      ),
+      side: const BorderSide(color: AppColors.border),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusXl),
+      ),
+      // El color del texto seleccionado lo pone cada chip (ver SelectorChips):
+      // un estilo por estados aquí se pierde y el texto queda sin color.
+      labelStyle: const TextStyle(
+        fontSize: AppSizes.textSm,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textPrimary,
       ),
     ),
 
@@ -96,6 +167,16 @@ class AppTheme {
         fontSize: AppSizes.textXl,
         fontWeight: FontWeight.bold,
         color: AppColors.primaryDark,
+      ),
+      titleLarge: TextStyle(
+        fontSize: AppSizes.textLg,
+        fontWeight: FontWeight.bold,
+        color: AppColors.primaryDark,
+      ),
+      titleSmall: TextStyle(
+        fontSize: AppSizes.textMd,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
       ),
       titleMedium: TextStyle(
         fontSize: AppSizes.textLg,

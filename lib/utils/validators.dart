@@ -1,3 +1,5 @@
+import 'formatos.dart';
+
 class Validators {
   static const String dominioInstitucional = '@unicesar.edu.co';
   static const int longitudMinimaContrasena = 8;
@@ -88,6 +90,39 @@ class Validators {
   /// Validador para listas desplegables obligatorias.
   static String? Function(T?) seleccionRequerida<T>(String mensaje) {
     return (valor) => valor == null ? mensaje : null;
+  }
+
+  /// Cantidad entera de puntos entre 1 y [disponibles].
+  static String? Function(String?) cantidadPuntos(int disponibles) {
+    return (valor) {
+      final texto = valor?.trim() ?? '';
+
+      if (texto.isEmpty) {
+        return 'Ingresa una cantidad de puntos.';
+      }
+
+      final cantidad = int.tryParse(texto);
+      if (cantidad == null || cantidad <= 0) {
+        return 'Ingresa un número entero mayor a 0.';
+      }
+
+      if (cantidad > disponibles) {
+        return 'Solo tienes ${Formatos.entero(disponibles)} puntos disponibles.';
+      }
+
+      return null;
+    };
+  }
+
+  /// Texto opcional de máximo [maximo] caracteres.
+  static String? Function(String?) textoMaximo(int maximo) {
+    return (valor) {
+      if (valor != null && valor.trim().length > maximo) {
+        return 'Máximo $maximo caracteres.';
+      }
+
+      return null;
+    };
   }
 
   static String? aceptarTerminos(bool? valor) {

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "usuarioId": 1,
+    "tipo": "sistema",
+    "titulo": "¡Bienvenida a CIRCLOOP!",
+    "mensaje": "Recicla en las estaciones del campus, gana puntos y cámbialos por premios.",
+    "fecha": "2026-08-15T08:00:00",
+    "leida": true
+  },
+  {
+    "id": 2,
+    "usuarioId": 1,
+    "tipo": "insignia",
+    "titulo": "¡Nueva insignia!",
+    "mensaje": "Ganaste la insignia Vidrio Hero por tu primera entrega de vidrio.",
+    "fecha": "2026-09-10T09:31:00",
+    "leida": false
+  },
+  {
+    "id": 3,
+    "usuarioId": 1,
+    "tipo": "canje",
+    "titulo": "Premio reclamado",
+    "mensaje": "Reclamaste Café Americano Gratis en Café Campus. ¡Disfrútalo!",
+    "fecha": "2026-09-12T13:00:00",
+    "leida": true
+  },
+  {
+    "id": 4,
+    "usuarioId": 1,
+    "tipo": "entrega",
+    "titulo": "Entrega registrada",
+    "mensaje": "Reciclaste 1,2 kg de plástico PET en la estación de Ingenierías. +50 pts",
+    "fecha": "2026-09-24T10:46:00",
+    "leida": false
+  }
+]

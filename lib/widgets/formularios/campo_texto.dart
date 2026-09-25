@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../utils/app_sizes.dart';
 
@@ -15,6 +16,13 @@ class CampoTexto extends StatelessWidget {
   final bool habilitado;
   final Widget? sufijo;
 
+  /// Líneas visibles (más de 1 para mensajes o descripciones).
+  final int lineas;
+
+  /// Restricciones de lo que se puede escribir, por ejemplo
+  /// `[FilteringTextInputFormatter.digitsOnly]` para solo números.
+  final List<TextInputFormatter>? formateadores;
+
   const CampoTexto({
     super.key,
     required this.etiqueta,
@@ -26,6 +34,8 @@ class CampoTexto extends StatelessWidget {
     this.ocultarTexto = false,
     this.habilitado = true,
     this.sufijo,
+    this.lineas = 1,
+    this.formateadores,
   });
 
   @override
@@ -41,10 +51,15 @@ class CampoTexto extends StatelessWidget {
           keyboardType: keyboardType,
           obscureText: ocultarTexto,
           enabled: habilitado,
+          maxLines: lineas,
+          inputFormatters: formateadores,
           decoration: InputDecoration(
             hintText: ejemplo,
             prefixIcon: icono != null ? Icon(icono) : null,
             suffixIcon: sufijo,
+            contentPadding: lineas > 1
+                ? const EdgeInsets.all(AppSizes.md)
+                : null,
           ),
         ),
       ],

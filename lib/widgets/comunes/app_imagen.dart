@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 
-/// Imagen de assets/images/ con un ícono de respaldo si el archivo
-/// todavía no existe o no se puede cargar.
+/// Imagen local de la marca (assets/images/: logo, mascota) con un ícono de
+/// respaldo si el archivo todavía no existe. Las imágenes que vienen de la
+/// base de datos (premios, fotos de usuario…) usan `ImagenRemota`.
 class AppImagen extends StatelessWidget {
   final String ruta;
   final double altura;
@@ -21,11 +22,8 @@ class AppImagen extends StatelessWidget {
     return Image.asset(
       ruta,
       height: altura,
-      errorBuilder: (context, error, stackTrace) => Icon(
-        iconoRespaldo,
-        size: altura * 0.7,
-        color: AppColors.primary,
-      ),
+      errorBuilder: (context, error, stackTrace) =>
+          Icon(iconoRespaldo, size: altura * 0.7, color: AppColors.primary),
     );
   }
 }

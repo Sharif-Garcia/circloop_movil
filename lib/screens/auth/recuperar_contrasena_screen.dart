@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../utils/app_colors.dart';
+import '../../widgets/auth/fondo_eco.dart';
 import '../../providers/recuperar_contrasena_provider.dart';
 import '../../services/codigo_verificacion/codigo_verificacion_service.dart';
 import '../../utils/app_sizes.dart';
@@ -99,119 +101,129 @@ class _RecuperarContrasenaScreenState
 
     ref.listen(recuperarContrasenaProvider, _escucharCambios);
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSizes.lg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const BotonVolver(),
+    return FondoEco(
+      child: Scaffold(
+        backgroundColor: AppColors.transparente,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(AppSizes.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const BotonVolver(),
 
-              const SizedBox(height: AppSizes.md),
+                const SizedBox(height: AppSizes.md),
 
-              const EncabezadoSeccion(
-                titulo: AppStrings.tituloRecuperar,
-                subtitulo: AppStrings.subtituloRecuperar,
-              ),
-
-              const SizedBox(height: AppSizes.lg),
-
-              // 1. Correo
-              AppTarjeta(
-                child: Form(
-                  key: _formCorreo,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CampoTexto(
-                        etiqueta: AppStrings.correoRegistrado,
-                        ejemplo: AppStrings.ejemploCorreo,
-                        icono: Icons.email_outlined,
-                        controller: _correoController,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: Validators.correoInstitucional,
-                        habilitado: !estado.codigoEnviado,
-                      ),
-                      const SizedBox(height: AppSizes.md),
-                      BotonPrimario(
-                        texto: estado.codigoEnviado
-                            ? AppStrings.codigoEnviado
-                            : AppStrings.enviarCodigo,
-                        onPressed: estado.codigoEnviado ? null : _enviarCodigo,
-                        cargando: estado.cargando && !estado.codigoEnviado,
-                      ),
-                    ],
-                  ),
+                const EncabezadoSeccion(
+                  titulo: AppStrings.tituloRecuperar,
+                  subtitulo: AppStrings.subtituloRecuperar,
                 ),
-              ),
 
-              const SizedBox(height: AppSizes.lg),
+                const SizedBox(height: AppSizes.lg),
 
-              // 2. Código
-              AppTarjeta(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(AppStrings.codigoRecibido, style: textos.labelMedium),
-                    const SizedBox(height: AppSizes.md),
-                    CampoCodigo(
-                      longitud: CodigoVerificacionService.longitudCodigo,
-                      habilitado: estado.codigoEnviado,
-                      onChanged: (codigo) => _codigo = codigo,
+                // 1. Correo
+                AppTarjeta(
+                  child: Form(
+                    key: _formCorreo,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CampoTexto(
+                          etiqueta: AppStrings.correoRegistrado,
+                          ejemplo: AppStrings.ejemploCorreo,
+                          icono: Icons.email_outlined,
+                          controller: _correoController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: Validators.correoInstitucional,
+                          habilitado: !estado.codigoEnviado,
+                        ),
+                        const SizedBox(height: AppSizes.md),
+                        BotonPrimario(
+                          texto: estado.codigoEnviado
+                              ? AppStrings.codigoEnviado
+                              : AppStrings.enviarCodigo,
+                          onPressed: estado.codigoEnviado
+                              ? null
+                              : _enviarCodigo,
+                          cargando: estado.cargando && !estado.codigoEnviado,
+                        ),
+                      ],
                     ),
-                    if (estado.codigoDePrueba != null) ...[
-                      const SizedBox(height: AppSizes.md),
-                      Center(
-                        child: Text(
-                          AppStrings.codigoDePrueba(estado.codigoDePrueba!),
-                          style: textos.bodySmall,
-                        ),
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
-              ),
 
-              const SizedBox(height: AppSizes.lg),
+                const SizedBox(height: AppSizes.lg),
 
-              // 3. Nueva contraseña
-              AppTarjeta(
-                child: Form(
-                  key: _formContrasena,
+                // 2. Código
+                AppTarjeta(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CampoContrasena(
-                        etiqueta: AppStrings.nuevaContrasena,
-                        ejemplo: AppStrings.ejemploNuevaContrasena,
-                        controller: _contrasenaController,
-                        validator: Validators.contrasenaNueva,
-                        habilitado: estado.codigoEnviado,
+                      Text(
+                        AppStrings.codigoRecibido,
+                        style: textos.labelMedium,
                       ),
                       const SizedBox(height: AppSizes.md),
-                      CampoContrasena(
-                        etiqueta: AppStrings.confirmarContrasena,
-                        ejemplo: AppStrings.ejemploConfirmarContrasena,
-                        controller: _confirmarController,
-                        validator: Validators.confirmarContrasena(
-                          () => _contrasenaController.text,
-                        ),
+                      CampoCodigo(
+                        longitud: CodigoVerificacionService.longitudCodigo,
                         habilitado: estado.codigoEnviado,
+                        onChanged: (codigo) => _codigo = codigo,
                       ),
+                      if (estado.codigoDePrueba != null) ...[
+                        const SizedBox(height: AppSizes.md),
+                        Center(
+                          child: Text(
+                            AppStrings.codigoDePrueba(estado.codigoDePrueba!),
+                            style: textos.bodySmall,
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),
-              ),
 
-              const SizedBox(height: AppSizes.lg),
+                const SizedBox(height: AppSizes.lg),
 
-              BotonPrimario(
-                texto: AppStrings.restablecerContrasena,
-                onPressed: estado.codigoEnviado ? _restablecerContrasena : null,
-                cargando: estado.cargando && estado.codigoEnviado,
-              ),
-            ],
+                // 3. Nueva contraseña
+                AppTarjeta(
+                  child: Form(
+                    key: _formContrasena,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CampoContrasena(
+                          etiqueta: AppStrings.nuevaContrasena,
+                          ejemplo: AppStrings.ejemploNuevaContrasena,
+                          controller: _contrasenaController,
+                          validator: Validators.contrasenaNueva,
+                          habilitado: estado.codigoEnviado,
+                        ),
+                        const SizedBox(height: AppSizes.md),
+                        CampoContrasena(
+                          etiqueta: AppStrings.confirmarContrasena,
+                          ejemplo: AppStrings.ejemploConfirmarContrasena,
+                          controller: _confirmarController,
+                          validator: Validators.confirmarContrasena(
+                            () => _contrasenaController.text,
+                          ),
+                          habilitado: estado.codigoEnviado,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: AppSizes.lg),
+
+                BotonPrimario(
+                  texto: AppStrings.restablecerContrasena,
+                  onPressed: estado.codigoEnviado
+                      ? _restablecerContrasena
+                      : null,
+                  cargando: estado.cargando && estado.codigoEnviado,
+                ),
+              ],
+            ),
           ),
         ),
       ),

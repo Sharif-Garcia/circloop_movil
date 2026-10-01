@@ -17,12 +17,20 @@ class AppTarjeta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Blanca y con borde normal por defecto; FondoEco la vuelve translúcida
+    // y con borde suave vía cardTheme
+    final temaTarjeta = Theme.of(context).cardTheme;
+    final forma = temaTarjeta.shape;
+    final colorBorde = forma is RoundedRectangleBorder
+        ? forma.side.color
+        : AppColors.border;
+
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: temaTarjeta.color ?? AppColors.surface,
         borderRadius: BorderRadius.circular(AppSizes.radiusLg),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: colorBorde),
         boxShadow: [
           BoxShadow(
             color: AppColors.black.withValues(alpha: 0.03),

@@ -35,4 +35,8 @@ class AppColors {
   static const Color grey = Color(0xFF667085);
   static const Color greyLight = Color(0xFFF1F5F9);
   static const Color greyDark = Color(0xFF475467);
+  static const Color transparente = Color(0x00000000);
+
+  /// Relleno translúcido de campos y tarjetas sobre FondoEco.
+  static const Color superficieTranslucida = Color(0xD9FFFFFF); // blanco 85 %
 }

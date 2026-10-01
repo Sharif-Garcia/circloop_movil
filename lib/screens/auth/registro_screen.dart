@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../utils/app_colors.dart';
+import '../../widgets/auth/fondo_eco.dart';
 import '../../models/carrera.dart';
 import '../../models/datos_registro.dart';
 import '../../models/usuario.dart';
@@ -90,93 +92,96 @@ class _RegistroScreenState extends ConsumerState<RegistroScreen> {
     final registro = ref.watch(registroProvider);
     ref.listen(registroProvider, _escucharRegistro);
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSizes.lg),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const BotonVolver(),
-                const SizedBox(height: AppSizes.md),
+    return FondoEco(
+      child: Scaffold(
+        backgroundColor: AppColors.transparente,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(AppSizes.lg),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const BotonVolver(),
+                  const SizedBox(height: AppSizes.md),
 
-                const EncabezadoSeccion(
-                  titulo: AppStrings.tituloRegistro,
-                  subtitulo: AppStrings.subtituloRegistro,
-                ),
-                const SizedBox(height: AppSizes.lg),
-
-                CampoTexto(
-                  etiqueta: AppStrings.nombres,
-                  ejemplo: AppStrings.ejemploNombres,
-                  icono: Icons.person_outline,
-                  controller: _nombresController,
-                  keyboardType: TextInputType.name,
-                  validator: Validators.nombre,
-                ),
-                const SizedBox(height: AppSizes.md),
-
-                CampoTexto(
-                  etiqueta: AppStrings.apellidos,
-                  ejemplo: AppStrings.ejemploApellidos,
-                  icono: Icons.person_outline,
-                  controller: _apellidosController,
-                  keyboardType: TextInputType.name,
-                  validator: Validators.nombre,
-                ),
-                const SizedBox(height: AppSizes.md),
-
-                CampoTexto(
-                  etiqueta: AppStrings.correoInstitucional,
-                  ejemplo: AppStrings.ejemploCorreo,
-                  icono: Icons.email_outlined,
-                  controller: _correoController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: Validators.correoInstitucional,
-                ),
-                const SizedBox(height: AppSizes.md),
-
-                CampoContrasena(
-                  ejemplo: AppStrings.ejemploContrasenaRegistro,
-                  controller: _contrasenaController,
-                  validator: Validators.contrasenaNueva,
-                ),
-                const SizedBox(height: AppSizes.md),
-
-                CampoContrasena(
-                  etiqueta: AppStrings.confirmarContrasenaRegistro,
-                  ejemplo: AppStrings.ejemploConfirmarContrasena,
-                  controller: _confirmarController,
-                  validator: Validators.confirmarContrasena(
-                    () => _contrasenaController.text,
+                  const EncabezadoSeccion(
+                    titulo: AppStrings.tituloRegistro,
+                    subtitulo: AppStrings.subtituloRegistro,
                   ),
-                ),
-                const SizedBox(height: AppSizes.md),
+                  const SizedBox(height: AppSizes.lg),
 
-                _campoCarrera(),
-                const SizedBox(height: AppSizes.md),
+                  CampoTexto(
+                    etiqueta: AppStrings.nombres,
+                    ejemplo: AppStrings.ejemploNombres,
+                    icono: Icons.person_outline,
+                    controller: _nombresController,
+                    keyboardType: TextInputType.name,
+                    validator: Validators.nombre,
+                  ),
+                  const SizedBox(height: AppSizes.md),
 
-                CasillaAceptacion(
-                  texto: AppStrings.aceptoTerminos,
-                  validator: Validators.aceptarTerminos,
-                ),
-                const SizedBox(height: AppSizes.lg),
+                  CampoTexto(
+                    etiqueta: AppStrings.apellidos,
+                    ejemplo: AppStrings.ejemploApellidos,
+                    icono: Icons.person_outline,
+                    controller: _apellidosController,
+                    keyboardType: TextInputType.name,
+                    validator: Validators.nombre,
+                  ),
+                  const SizedBox(height: AppSizes.md),
 
-                BotonPrimario(
-                  texto: AppStrings.crearCuenta,
-                  onPressed: _crearCuenta,
-                  cargando: registro.isLoading,
-                ),
-                const SizedBox(height: AppSizes.md),
+                  CampoTexto(
+                    etiqueta: AppStrings.correoInstitucional,
+                    ejemplo: AppStrings.ejemploCorreo,
+                    icono: Icons.email_outlined,
+                    controller: _correoController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: Validators.correoInstitucional,
+                  ),
+                  const SizedBox(height: AppSizes.md),
 
-                EnlaceTexto(
-                  texto: AppStrings.yaTienesCuenta,
-                  accion: AppStrings.iniciarSesion,
-                  onPressed: _volverAlLogin,
-                ),
-              ],
+                  CampoContrasena(
+                    ejemplo: AppStrings.ejemploContrasenaRegistro,
+                    controller: _contrasenaController,
+                    validator: Validators.contrasenaNueva,
+                  ),
+                  const SizedBox(height: AppSizes.md),
+
+                  CampoContrasena(
+                    etiqueta: AppStrings.confirmarContrasenaRegistro,
+                    ejemplo: AppStrings.ejemploConfirmarContrasena,
+                    controller: _confirmarController,
+                    validator: Validators.confirmarContrasena(
+                      () => _contrasenaController.text,
+                    ),
+                  ),
+                  const SizedBox(height: AppSizes.md),
+
+                  _campoCarrera(),
+                  const SizedBox(height: AppSizes.md),
+
+                  CasillaAceptacion(
+                    texto: AppStrings.aceptoTerminos,
+                    validator: Validators.aceptarTerminos,
+                  ),
+                  const SizedBox(height: AppSizes.lg),
+
+                  BotonPrimario(
+                    texto: AppStrings.crearCuenta,
+                    onPressed: _crearCuenta,
+                    cargando: registro.isLoading,
+                  ),
+                  const SizedBox(height: AppSizes.md),
+
+                  EnlaceTexto(
+                    texto: AppStrings.yaTienesCuenta,
+                    accion: AppStrings.iniciarSesion,
+                    onPressed: _volverAlLogin,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

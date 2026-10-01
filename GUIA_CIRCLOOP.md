@@ -315,7 +315,7 @@ Funciones estáticas `String? Function(String?)` que devuelven el mensaje de err
 ### `widgets/botones/`
 | Widget | Uso |
 |---|---|
-| `BotonPrimario(texto:, onPressed:, cargando:)` | Botón principal ancho completo; `onPressed: null` lo deshabilita; `cargando` muestra spinner |
+| `BotonPrimario(texto:, onPressed:, cargando:, iconoFinal:)` | Botón principal ancho completo; `onPressed: null` lo deshabilita; `cargando` muestra spinner; `iconoFinal` pone un ícono tras el texto (flecha en "Siguiente") |
 | `BotonVolver(onPressed:)` | "< Volver" (por defecto `Navigator.maybePop`) |
 | `EnlaceTexto(texto:, accion:, onPressed:)` | "¿Ya tienes cuenta? **Inicia sesión**" (usa `Wrap`, no se desborda) |
 | `BotonAccion(titulo:, subtitulo:, icono:, color:, onPressed:)` | Acción rápida en tarjeta teñida; se usa en fila con `Expanded` en el inicio de cualquier rol |
@@ -349,6 +349,11 @@ Funciones estáticas `String? Function(String?)` que devuelven el mensaje de err
 
 ### `widgets/auth/`
 `EncabezadoAuth(titulo:, subtitulo:)`: logo en círculo verde claro + título + subtítulo.
+
+`FondoEco(child: Scaffold(backgroundColor: AppColors.transparente, ...))`: la ilustración del paisaje (`AppImages.fondo`, `assets/images/fondo_circloop.png`) cubriendo toda la pantalla, usada en login, registro y recuperar contraseña. Dentro de él los campos y las `AppTarjeta` se vuelven blancos translúcidos (`AppColors.superficieTranslucida`) con radio 16 y borde suave automáticamente, vía el tema; no hay que cambiar cada campo.
+
+### `widgets/onboarding/`
+`IlustracionPaso(imagen:, icono:, color:, iconosSecundarios:)`: GIF animado (`assets/images/onboarding/`, constantes `AppImages.onboarding*`) directamente sobre la pantalla (sin tarjeta), con un resplandor radial verde (`AppColors.primary` con opacidad baja) detrás + íconos pequeños flotantes con sombra suave; si el GIF no existe muestra `icono`. Los GIF se generan con su fondo transparente mezclado en los bordes con ese resplandor. Se adapta al ancho (máx. `AppSizes.ilustracionOnboarding`). Los pasos (`onboarding_pasos.dart`) definen título, descripción, `etiqueta`, GIF, ícono y color; `OnboardingScreen` es un `PageView` deslizable.
 
 **Cómo escribir un widget nuevo:** `StatelessWidget` salvo que tenga estado visual propio; parámetros `final` en español; constructor `const` con `super.key`; comentario `///` de una línea explicando para qué sirve; estilos desde `AppColors`/`AppSizes`/`textTheme`; imports relativos (`'../../utils/app_sizes.dart'`).
 

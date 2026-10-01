@@ -1,15 +1,16 @@
 # Pantalla nativa que se muestra mientras Flutter carga (antes de SplashScreen).
-# Para regenerarla después de cambiar las imágenes de assets/launcher/:
+# Es solo el color de fondo, sin logo: el logo aparece animado en SplashScreen
+# y así no se ve dos veces. Para regenerarla:
 #   dart run flutter_native_splash:create
 
 flutter_native_splash:
   # Mismo color que AppColors.background para que no se note el cambio
   color: "#FAF8FF"
-  image: "assets/launcher/splash.png"
 
-  # Android 12+ muestra el ícono dentro de un círculo
+  # Android 12+ siempre muestra un ícono (si no se indica, el de la app);
+  # una imagen transparente lo deja vacío.
   android_12:
-    image: "assets/launcher/icono_adaptativo.png"
+    image: "assets/launcher/transparente.png"
     color: "#FAF8FF"
 
   android: true

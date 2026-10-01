@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
+import '../../utils/app_sizes.dart';
 
 /// Botón principal de ancho completo. El color, alto, bordes y texto
-/// los hereda de `filledButtonTheme` en AppTheme.
+/// los hereda de `filledButtonTheme` en AppTheme. `iconoFinal` pone un ícono
+/// después del texto (por ejemplo una flecha en "Siguiente").
 class BotonPrimario extends StatelessWidget {
   final String texto;
   final VoidCallback? onPressed;
   final bool cargando;
+  final IconData? iconoFinal;
 
   const BotonPrimario({
     super.key,
     required this.texto,
     required this.onPressed,
     this.cargando = false,
+    this.iconoFinal,
   });
 
   @override
@@ -29,7 +33,16 @@ class BotonPrimario extends StatelessWidget {
                 color: AppColors.white,
               ),
             )
-          : Text(texto),
+          : iconoFinal == null
+          ? Text(texto)
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(texto),
+                const SizedBox(width: AppSizes.sm),
+                Icon(iconoFinal, size: AppSizes.iconSm),
+              ],
+            ),
     );
   }
 }

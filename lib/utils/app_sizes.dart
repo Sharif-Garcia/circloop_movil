@@ -30,6 +30,8 @@ class AppSizes {
   static const double logoMd = 64.0;
   static const double logoLg = 140.0;
   static const double ilustracion = 220.0;
+  static const double ilustracionOnboarding = 280.0;
+  static const double insigniaIlustracion = 52.0;
   static const double codigoQr = 200.0;
   static const double imagenPremio = 96.0;
 

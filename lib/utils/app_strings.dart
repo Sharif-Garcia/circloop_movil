@@ -11,8 +11,13 @@ class AppStrings {
 
   static const String saltar = 'Saltar';
   static const String siguiente = 'Siguiente';
+  static const String comenzar = 'Comenzar';
   static const String iniciarSesion = 'Iniciar sesión';
   static const String cerrarSesion = 'Cerrar sesión';
+
+  // ONBOARDING
+
+  static String pasoDe(int paso, int total) => 'Paso $paso de $total';
 
   // LOGIN
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../widgets/auth/fondo_eco.dart';
 import '../../models/usuario.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/app_colors.dart';
@@ -77,77 +78,80 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       );
     });
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSizes.lg),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: AppSizes.xl),
+    return FondoEco(
+      child: Scaffold(
+        backgroundColor: AppColors.transparente,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(AppSizes.lg),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: AppSizes.xl),
 
-                const EncabezadoAuth(
-                  titulo: AppStrings.tituloLogin,
-                  subtitulo: AppStrings.subtituloLogin,
-                ),
-
-                const SizedBox(height: AppSizes.xl),
-
-                AppTarjeta(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CampoTexto(
-                        etiqueta: AppStrings.correoInstitucional,
-                        ejemplo: AppStrings.ejemploCorreo,
-                        icono: Icons.email_outlined,
-                        controller: _correoController,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: Validators.correo,
-                      ),
-
-                      const SizedBox(height: AppSizes.md),
-
-                      CampoContrasena(
-                        controller: _contrasenaController,
-                        validator: Validators.contrasena,
-                      ),
-
-                      const SizedBox(height: AppSizes.sm),
-
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () =>
-                              _abrir(const RecuperarContrasenaScreen()),
-                          style: TextButton.styleFrom(
-                            foregroundColor: AppColors.primary,
-                          ),
-                          child: const Text(AppStrings.olvidasteContrasena),
-                        ),
-                      ),
-
-                      const SizedBox(height: AppSizes.md),
-
-                      BotonPrimario(
-                        texto: AppStrings.iniciarSesion,
-                        onPressed: _iniciarSesion,
-                        cargando: authState.isLoading,
-                      ),
-                    ],
+                  const EncabezadoAuth(
+                    titulo: AppStrings.tituloLogin,
+                    subtitulo: AppStrings.subtituloLogin,
                   ),
-                ),
 
-                const SizedBox(height: AppSizes.lg),
+                  const SizedBox(height: AppSizes.xl),
 
-                EnlaceTexto(
-                  texto: AppStrings.noTienesCuenta,
-                  accion: AppStrings.registrate,
-                  onPressed: () => _abrir(const RegistroScreen()),
-                ),
-              ],
+                  AppTarjeta(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CampoTexto(
+                          etiqueta: AppStrings.correoInstitucional,
+                          ejemplo: AppStrings.ejemploCorreo,
+                          icono: Icons.email_outlined,
+                          controller: _correoController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: Validators.correo,
+                        ),
+
+                        const SizedBox(height: AppSizes.md),
+
+                        CampoContrasena(
+                          controller: _contrasenaController,
+                          validator: Validators.contrasena,
+                        ),
+
+                        const SizedBox(height: AppSizes.sm),
+
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () =>
+                                _abrir(const RecuperarContrasenaScreen()),
+                            style: TextButton.styleFrom(
+                              foregroundColor: AppColors.primary,
+                            ),
+                            child: const Text(AppStrings.olvidasteContrasena),
+                          ),
+                        ),
+
+                        const SizedBox(height: AppSizes.md),
+
+                        BotonPrimario(
+                          texto: AppStrings.iniciarSesion,
+                          onPressed: _iniciarSesion,
+                          cargando: authState.isLoading,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: AppSizes.lg),
+
+                  EnlaceTexto(
+                    texto: AppStrings.noTienesCuenta,
+                    accion: AppStrings.registrate,
+                    onPressed: () => _abrir(const RegistroScreen()),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
